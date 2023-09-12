@@ -1,0 +1,31 @@
+﻿@model clonemondo.Models.AirportViewModel
+
+<h1>Airports</h1>
+<br />
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>City</th>
+                <th>Country</th>
+                <th>Continent</th>
+                <th>Airline</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var airport in Model.Airports)
+            {
+                <tr>
+                    <td>@airport.FullName</td>
+                    <td>@airport.Country</td>
+                    <td>@airport.Continent</td>
+                    <td>@airport.Airline</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<br />
+<hr />
+<br />

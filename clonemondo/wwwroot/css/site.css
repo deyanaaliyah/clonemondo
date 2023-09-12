@@ -1,0 +1,95 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+.main-nav-and-body {
+    display: grid;
+    grid-template-columns: 200px auto;
+    padding: 0 10px 0 0;
+}
+.main-navigation {
+    border-right: 0.5px solid #d6d8b5;
+}
+
+.navbar-brand,
+nav,
+html,
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: #023047;
+    color: #f3f3f3;
+}
+
+p {
+    font-weight: 100;
+    font-size: 12px;
+}
+h3 {
+    font-weight:bold;
+}
+footer {
+    border-top: 0.5px solid #d6d8b5;
+}
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.footer-center {
+    text-align: center;
+    font-size: 10px;
+}
+
+footer {
+    z-index: -1;
+    position: unset !important;
+}
+
+
+/* Style the table */
+table {
+    width: 100%; /* Make the table fill the container */
+    border-collapse: collapse; /* Remove spacing between table cells */
+}
+
+/* Style table headers */
+thead {
+    background-color: #f0f0f0; /* Light gray background color */
+}
+
+th {
+    padding: 10px; /* Add padding for spacing */
+    text-align: left; /* Align header text to the left */
+}
+
+/* Style table rows */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternate row background color */
+}
+
+tbody td {
+    padding: 10px; /* Add padding for spacing */
+}
+
+/* ----- FORM FOR SEARCH ----- */
+
+form {
+    width: 100%;
+}
+.awesomplete {
+    width: 100%;
+}
+
+.footer-center {
+    text-align: center;
+    font-size: 10px;
+}
