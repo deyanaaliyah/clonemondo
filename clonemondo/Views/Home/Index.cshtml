@@ -5,37 +5,40 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
-<div class="search-container">
-    <br />
-    <h3>Welcome! Find your next flexible trip</h3>
-    <form method="get" action="/Flight/Search">
+<div id="original-search-container">
+    <div class="search-container">
+        <br />
+        <h3>Welcome! Find your next flexible trip</h3>
+        <form method="get" action="/Flight/Search" class="form">
 
-        <div class="form-group" id="trip-type-buttons">
-            <button type="button" id="one-way-button">One Way</button>
-            /
-            <button type="button" id="return-trip-button" class="bold">Return Trip</button>
-        </div>
-
-        <div class="form-grid">
-            <div class="form-group">
-                <input type="text" id="departure" name="departure" placeholder="From?" required>
-            </div>
-            <div class="form-group">
-                <input type="text" id="destination" name="destination" placeholder="To?" required>
-            </div>
-            <div class="form-group" id="departure-date-group">
-                <input type="date" id="departure-date" name="departure-date" min="@DateTime.Now.ToString("yyyy-MM-dd")" value="@DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd")" required>
-            </div>
-            <div class="form-group" id="return-date-group">
-                <input type="date" id="return-date" name="return-date" min="@DateTime.Now.ToString("yyyy-MM-dd")" value="@DateTime.Now.AddMonths(1).AddDays(7).ToString("yyyy-MM-dd")" required>
+            <div class="form-group" id="trip-type-buttons">
+                <button type="button" id="one-way-button">One Way</button>
+                /
+                <button type="button" id="return-trip-button" class="bold">Return Trip</button>
             </div>
 
-            <div class="form-group">
-                <button type="submit" id="submit-button">Search</button>
+            <div class="form-grid">
+                <div class="form-group">
+                    <input type="text" id="departure" name="departure" placeholder="From?" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="destination" name="destination" placeholder="To?" required>
+                </div>
+                <div class="form-group" id="departure-date-group">
+                    <input type="date" id="departure-date" name="departure-date" min="@DateTime.Now.ToString("yyyy-MM-dd")" value="@DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd")" required>
+                </div>
+                <div class="form-group" id="return-date-group">
+                    <input type="date" id="return-date" name="return-date" min="@DateTime.Now.ToString("yyyy-MM-dd")" value="@DateTime.Now.AddMonths(1).AddDays(7).ToString("yyyy-MM-dd")" required>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" id="submit-button">Search</button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
+
 
 <div class="deals-container">
     <h3>Feeling lucky?</h3>
@@ -67,40 +70,71 @@
 
     // Create Awesomplete instances for both input fields
     var awesompleteDeparture = new Awesomplete(departureInput, {
-        list: @Html.Raw(Json.Serialize(Model.Airports.Select(a => a.City))), // Use your data source
+        list: @Html.Raw(Json.Serialize(Model.Airports.Select(a => a.FullName))), // Use your data source
         minChars: 2 // Minimum characters to trigger autocomplete
     });
 
     var awesompleteDestination = new Awesomplete(destinationInput, {
-        list: @Html.Raw(Json.Serialize(Model.Airports.Select(a => a.City))), // Use your data source
+        list: @Html.Raw(Json.Serialize(Model.Airports.Select(a => a.FullName))), // Use your data source
         minChars: 2 // Minimum characters to trigger autocomplete
     });
+
 
     var oneWayButton = document.getElementById('one-way-button');
     var returnTripButton = document.getElementById('return-trip-button');
     var departureDateGroup = document.getElementById('departure-date-group');
     var departureDateInput = document.getElementById('departure-date');
 
-    oneWayButton.addEventListener('click', function () {
-        oneWayButton.classList.add('bold');
-        returnTripButton.classList.remove('bold');
-        document.getElementById('return-date-group').style.display = 'none';
-        document.getElementById('return-date').removeAttribute('required');
+    function setGridColumns() {
+        var screenWidth = window.innerWidth;
 
-        document.getElementsByClassName('form-grid')[0].style.gridTemplateColumns = '25% 25% auto 8%';
-    });
+        if (screenWidth < 1200) {
+            oneWayButton.addEventListener('click', function () {
+                oneWayButton.classList.add('bold');
+                returnTripButton.classList.remove('bold');
+                document.getElementById('return-date-group').style.display = 'none';
+                document.getElementById('return-date').removeAttribute('required');
 
-    returnTripButton.addEventListener('click', function () {
-        returnTripButton.classList.add('bold');
-        oneWayButton.classList.remove('bold');
-        document.getElementById('return-date-group').style.display = 'block';
-        document.getElementById('return-date').setAttribute('required', 'required');
+                document.getElementsByClassName('form-grid')[0].style.gridTemplateColumns = '100%';
+            });
 
-        document.getElementsByClassName('form-grid')[0].style.gridTemplateColumns = '25% 25% auto auto 8%';
-    });
-</script>
+            returnTripButton.addEventListener('click', function () {
+                returnTripButton.classList.add('bold');
+                oneWayButton.classList.remove('bold');
+                document.getElementById('return-date-group').style.display = 'block';
+                document.getElementById('return-date').setAttribute('required', 'required');
 
-<script>
+                document.getElementsByClassName('form-grid')[0].style.gridTemplateColumns = '100%';
+            });
+        } else {
+            oneWayButton.addEventListener('click', function () {
+                oneWayButton.classList.add('bold');
+                returnTripButton.classList.remove('bold');
+                document.getElementById('return-date-group').style.display = 'none';
+                document.getElementById('return-date').removeAttribute('required');
+
+                document.getElementsByClassName('form-grid')[0].style.gridTemplateColumns = '25% 25% auto 8%';
+            });
+
+            returnTripButton.addEventListener('click', function () {
+                returnTripButton.classList.add('bold');
+                oneWayButton.classList.remove('bold');
+                document.getElementById('return-date-group').style.display = 'block';
+                document.getElementById('return-date').setAttribute('required', 'required');
+
+                document.getElementsByClassName('form-grid')[0].style.gridTemplateColumns = '25% 25% auto auto 8%';
+            });
+        }
+    }
+
+    // Initial setup
+    setGridColumns();
+
+    // Listen for changes in screen width
+    window.addEventListener('resize', setGridColumns);
+
+
+
     // Get a reference to the input fields
     var departureInput = document.getElementById('departure');
     var destinationInput = document.getElementById('destination');

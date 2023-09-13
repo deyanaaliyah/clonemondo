@@ -1,11 +1,12 @@
 ﻿@model clonemondo.Models.AirportViewModel
-
+<br/>
 <h1>Airports</h1>
 <br />
 <div class="table-container">
     <table>
         <thead>
             <tr>
+                <th>Abbreviation</th>
                 <th>City</th>
                 <th>Country</th>
                 <th>Continent</th>
@@ -16,7 +17,8 @@
             @foreach (var airport in Model.Airports)
             {
                 <tr>
-                    <td>@airport.FullName</td>
+                    <td style="font-weight:700;">@airport.Abbreviation</td>
+                    <td>@airport.City</td>
                     <td>@airport.Country</td>
                     <td>@airport.Continent</td>
                     <td>@airport.Airline</td>
@@ -29,3 +31,223 @@
 <br />
 <hr />
 <br />
+
+<p style="display:none;">
+    <h1 id="toggle">Wanna see how I use this data?</h1>
+    <br/>
+    <h4>How I read and use this data from a CSV-file</h4>
+    <br />
+    I use a CSV-file to retrieve data about airports. I use this format
+    <br />
+    <pre class="code-block">
+    <code>
+        abbreviation;city;country;continent;airline;
+        abbreviation;city;country;continent;airline;
+        ...
+        </code>
+    </pre>
+
+    In my AirportDataReader-class, I implemented a method called <code>ReadAirports()</code>. This method reads data from a file,
+    parses it, and creates a list of Airport objects based on the contents of the file. It returns a list of Airport
+    objects containing information about various airports.
+
+    <br /><br /><br />
+
+    <style>
+        .how-i-did-it {
+            display: none;
+        }
+
+        .drop-down-icon {
+            display: inline-block;
+            margin-left: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .content {
+            display: none;
+        }
+
+            .content.active {
+                display: block;
+            }
+
+        .code-block {
+            font-family: 'Courier New', monospace;
+            background-color: #f7f7f7;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            color: #d63384;
+        }
+
+        .line-number {
+            display: inline-block;
+            width: 2em;
+            padding: 0 5px;
+            margin-right: 5px;
+            text-align: right;
+        }
+
+        .code-block1 {
+            font-family: 'Courier New', monospace;
+            background-color: #f4f4f4; /* Background color for the code block */
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        .line-number {
+            display: inline-block;
+            width: 2em;
+            padding: 0 5px;
+            margin-right: 5px;
+            text-align: right;
+        }
+
+        .comment {
+            color: green; /* Green color for comments */
+        }
+
+        p {
+            font-size: inherit;
+        }
+
+        .hidden-content {
+            display: none;
+            font-size: inherit;
+        }
+
+        .visible-content {
+            display: block;
+        }
+
+        .collapsible-trigger {
+            cursor: pointer;
+        }
+    </style>
+
+    <h4>Body of the method</h4>
+    <br />
+    Click on the bullets to read more : ).
+    <ol>
+        <li>
+            <strong class="collapsible-trigger" onclick="toggleContent('content1')">FilePath Initialization:</strong>
+            <p class="hidden-content" id="content1">
+                The method begins by initializing a string variable named
+                <code>FilePath</code> using the <code>GetFilePath</code> method. This variable holds the path to the file
+                from which data will be read.
+            </p>
+        </li>
+        <li>
+            <strong class="collapsible-trigger" onclick="toggleContent('content2')">List Initialization:</strong>
+            <p class="hidden-content" id="content2">
+                A <code>List&lt;Airport&gt;</code> named <code>airports</code> is created to store the Airport objects
+                that will be read from the file.
+            </p>
+        </li>
+        <li>
+            <strong class="collapsible-trigger" onclick="toggleContent('content3')">File Existence Check:</strong>
+            <p class="hidden-content" id="content3">
+                It checks whether the file specified by <code>FilePath</code> exists using <code>File.Exists</code>.
+                If the file exists, the code proceeds to read its contents; otherwise, it skips the file reading process.
+            </p>
+        </li>
+        <li>
+            <strong class="collapsible-trigger" onclick="toggleContent('content4')">Reading File Contents:</strong>
+            <p class="hidden-content" id="content4">
+                The method reads all lines from the file specified by <code>FilePath</code> using
+                <code>File.ReadAllLines</code>. The contents of the file are stored as an array of strings called
+                <code>lines</code>.
+            </p>
+        </li>
+        <li>
+            <strong class="collapsible-trigger" onclick="toggleContent('content5')">Parsing and Object Creation:</strong>
+            <p class="hidden-content" id="content5">
+                It then iterates through each <code>line</code> in the <code>lines</code> array. Each <code>line</code>
+                is split into an array of strings called <code>values</code> using the ';' delimiter.
+            </p>
+        </li>
+        <li>
+            <strong class="collapsible-trigger" onclick="toggleContent('content6')">Validation Check:</strong>
+            <p class="hidden-content" id="content6">
+                It checks if the <code>values</code> array has at least 6 elements.
+                If it does, it means the line contains the expected data for an Airport, and a new Airport object is created
+                with properties initialized from the corresponding elements in the <code>values</code> array.
+            </p>
+        </li>
+        <li>
+            <strong class="collapsible-trigger" onclick="toggleContent('content7')">Adding to List:</strong>
+            <p class="hidden-content" id="content7">
+                The newly created Airport object is added to the <code>airports</code> list.
+            </p>
+        </li>
+        <li>
+            <strong class="collapsible-trigger" onclick="toggleContent('content8')">Returning the List:</strong>
+            <p class="hidden-content" id="content8">
+                Finally, the method returns the <code>airports</code> list, which contains all the Airport objects read
+                from the file.
+            </p>
+        </li>
+    </ol>
+    <br />
+    <br />
+
+    <h4>Data reader</h4>
+
+    <pre class="code-block">
+    <code>
+    <span class="line-number">1</span> if (File.Exists(FilePath))
+    <span class="line-number">2</span> {
+    <span class="line-number">3</span>     string[] lines = File.ReadAllLines(FilePath);
+    <span class="line-number">4</span>
+    <span class="line-number">5</span>     foreach (string line in lines)
+    <span class="line-number">6</span>     {
+    <span class="line-number">7</span>         string[] values = line.Split(';');
+    <span class="line-number">8</span>
+    <span class="line-number">9</span>         if (values.Length >= 6) <span class="comment">// every 5th ";" is a new line</span>
+    <span class="line-number">10</span>         {
+    <span class="line-number">11</span>             airports.Add(new Airport <span class="comment">// creates a new Aiport and adding to the "airports"-list per every 5th semicolon</span>
+    <span class="line-number">12</span>             {
+    <span class="line-number">13</span>                 Abbreviation = values[0],
+    <span class="line-number">14</span>                 City = values[1],
+    <span class="line-number">15</span>                 Country = values[2],
+    <span class="line-number">16</span>                 Continent = values[3],
+    <span class="line-number">17</span>                 Airline = values[4],
+    <span class="line-number">18</span>                 FullName = values[1] + " (" + values[0] + ")"
+    <span class="line-number">19</span>             });
+    <span class="line-number">20</span>         }
+    <span class="line-number">21</span>     }
+    <span class="line-number">22</span> }
+    </code>
+</pre>
+
+    <br />
+    <br />
+
+    <h4>Data Mapping</h4>
+
+    Abbreviation corresponds to <code>values[0]</code>
+    <br />
+    City corresponds to <code>values[1]</code>
+    <br />
+    Country corresponds to <code>values[2]</code>
+    <br />
+    Continent corresponds to <code>values[3]</code>
+    <br />
+    Airline corresponds to <code>values[4]</code>
+    <br />
+    FullName corresponds to <code>values[1] + " (" + values[0] + ")"</code> (which I, btw, think is geniously pretty)
+    <br />
+</p>
+
+<script>
+
+    function toggleContent(liId) {
+        const content = document.getElementById(liId);
+        content.classList.toggle('visible-content');
+    }
+</script>

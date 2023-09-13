@@ -38,7 +38,7 @@ namespace clonemondo.Data
                             Country = values[2],
                             Continent = values[3],
                             Airline = values[4],
-                            FullName = values[5]
+                            FullName = values[1] + " (" + values[0] + ")"
                         });
                     }
                 }

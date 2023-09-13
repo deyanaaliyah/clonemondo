@@ -19,17 +19,33 @@
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="~/img/Logo.png" style="height:40px;" />
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div style="height:35px;">
+
+                <div class="loc-picker" style="height:35px;">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Flag_of_Denmark.svg/512px-Flag_of_Denmark.svg.png" style="width: 16px; border-radius: 20%; margin-right: 8px;" />
                         </li>
                         <li class="nav-item" style="margin-top: 5px;">
                             <p>kr.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Airports">Airports</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/deyanaaliyah">GitHub</a>
                         </li>
                     </ul>
                 </div>
@@ -43,7 +59,7 @@
         </main>
     </div>
 
-    <footer class="footer text-muted">
+    <footer class="line-height">
         <div class="grid-container">
             <div class="item1">
                 <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
@@ -67,4 +83,3 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
-

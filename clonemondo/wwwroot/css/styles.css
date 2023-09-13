@@ -3,10 +3,9 @@
 }
 .container-fluid {
     color: #f3f3f3;
-    border-bottom: 0.5px solid #d6d8b5;
+    border-bottom: 0.5px solid #f3f3f3;
     background: #023047;
 }
-
 
 .grid-container {
     display: grid;
@@ -14,6 +13,11 @@
     grid-gap: 10px;
     padding: 10px;
     font-size: 12px;
+}
+
+
+.line-height {
+    line-height: 9em !important;
 }
 
 .grid-container > div {
@@ -57,8 +61,8 @@
     grid-gap: 10px;
     background-color: #457b9d;
     border-radius: 10px;
-    padding: 15px 0 0 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px 15px 0 15px;
+    box-shadow: 0 0 6px 0 rgba(3,4,94,0.1), 0 0 10px 1px #457b9d;
 }
 
 #trip-type-buttons {
@@ -98,9 +102,9 @@
     color: inherit;
 }
 
-    #trip-type-buttons button.bold {
-        font-weight: bold;
-    }
+#trip-type-buttons button.bold {
+    font-weight: bold;
+}
 
 input[type="text"],
 input[type="date"],
@@ -126,14 +130,15 @@ button {
 }
 
 .deal-box:hover {
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
+    box-shadow: 0 0 10px 0 #023047, /* inner white */
+    0 0 30px 0 rgba(69,123,157,0.5); /* dark blue */
 }
 
 .deal-box {
     width: calc(33.33% - 20px);
     background-color: rgba(33,158,188, 0.2);
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
     margin-bottom: 20px;
     overflow: hidden;
 }
@@ -191,7 +196,7 @@ button {
 }
 
 .see-more:hover {
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 4px 12px;
     border: 1.5px solid rgba(255, 255, 255, 0.7);
     color: #f3f3f3;
 }
