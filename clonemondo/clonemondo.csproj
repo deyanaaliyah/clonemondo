@@ -9,11 +9,14 @@
   <ItemGroup>
     <None Remove="Data\" />
     <None Remove="ViewModels\" />
+    <None Remove="Models\FlightSearch.css" />
+    <None Remove="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="wwwroot\img\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\img\" />

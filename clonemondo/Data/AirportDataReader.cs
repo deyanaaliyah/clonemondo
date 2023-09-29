@@ -19,7 +19,7 @@ namespace clonemondo.Data
         {
             string FilePath = GetFilePath();
 
-            List<Airport> airports = new List<Airport>();
+            List<Airport> airports = new();
 
             if (File.Exists(FilePath))
             {
@@ -45,6 +45,14 @@ namespace clonemondo.Data
             }
 
             return airports;
+        }
+
+        public Airport? GetAirport(string MySearch)
+        {
+            List<Airport> airports = ReadAirports();
+
+
+            return airports.FirstOrDefault(x => x.FullName == MySearch);
         }
     }
 }

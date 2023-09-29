@@ -1,0 +1,25 @@
+﻿@model clonemondo.ViewModels.SearchResultViewModel
+
+<table>
+    <thead>
+        <tr>
+            <th>Flight Number</th>
+            <th>Origin</th>
+            <th>Destination</th>
+            <th>Price</th>
+            <th>Duration</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var flight in Model.Flights)
+        {
+            <tr>
+                <td>@flight.FlightNumber</td>
+                <td>@flight.OriginAirport.FullName</td>
+                <td>@flight.DestinationAirport.FullName</td>
+                <td>@flight.Price</td>
+                <td>@flight.Duration</td>
+            </tr>
+        }
+    </tbody>
+</table>

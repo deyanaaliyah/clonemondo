@@ -9,33 +9,34 @@
     <div class="search-container">
         <br />
         <h3>Welcome! Find your next flexible trip</h3>
-        <form method="get" action="/Flight/Search" class="form">
-
+        <form asp-controller="Search" asp-action="SearchFlights" method="post" class="form">
             <div class="form-group" id="trip-type-buttons">
-                <button type="button" id="one-way-button">One Way</button>
-                /
+                <button type="button" id="one-way-button">One Way</button> /
                 <button type="button" id="return-trip-button" class="bold">Return Trip</button>
             </div>
-
             <div class="form-grid">
                 <div class="form-group">
-                    <input type="text" id="departure" name="departure" placeholder="From?" required>
+                    <label for="departure">Departure:</label>
+                    <input type="text" id="departure" name="departure" placeholder="From?" required minlength="3" maxlength="50">
                 </div>
                 <div class="form-group">
-                    <input type="text" id="destination" name="destination" placeholder="To?" required>
+                    <label for="destination">Destination:</label>
+                    <input type="text" id="destination" name="destination" placeholder="To?" required minlength="3" maxlength="50">
                 </div>
                 <div class="form-group" id="departure-date-group">
+                    <label for="departure-date">Departure Date:</label>
                     <input type="date" id="departure-date" name="departure-date" min="@DateTime.Now.ToString("yyyy-MM-dd")" value="@DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd")" required>
                 </div>
                 <div class="form-group" id="return-date-group">
-                    <input type="date" id="return-date" name="return-date" min="@DateTime.Now.ToString("yyyy-MM-dd")" value="@DateTime.Now.AddMonths(1).AddDays(7).ToString("yyyy-MM-dd")" required>
+                    <label for="return-date">Return Date:</label>
+                    <input type="date" id="return-date" name="return-date" min="@DateTime.Now.ToString("yyyy-MM-dd")" value="@DateTime.Now.AddMonths(1).AddDays(7).ToString("yyyy-MM-dd")">
                 </div>
-
                 <div class="form-group">
                     <button type="submit" id="submit-button">Search</button>
                 </div>
             </div>
         </form>
+
     </div>
 </div>
 

@@ -29,19 +29,36 @@ namespace clonemondo.Data
                 {
                     string[] values = line.Split(';');
 
-                    if (values.Length >= 3)
+                    if (values.Length >= 4)
                     {
                         featuredFares.Add(new FeaturedFares
                         {
                             ImageUrl = values[0],
                             City = values[1],
-                            Country = values[2]
+                            Country = values[2],
+                            Continent = values[3]
                         });
                     }
                 }
             }
 
             return featuredFares;
+        }
+
+        public int SetPrice(string continent)
+        {
+            int randomPrice;
+
+            if (continent.Equals("Europe"))
+            {
+                randomPrice = random.Next(251, 499);
+            }
+            else
+            {
+                randomPrice = random.Next(901, 1599);
+            }
+
+            return randomPrice;
         }
 
         public List<FeaturedFares> GenerateFeaturedFares()
@@ -61,9 +78,6 @@ namespace clonemondo.Data
                 int randomIndex = random.Next(allFares.Count);
                 var fare = allFares[randomIndex];
 
-                // Generate random price between 700 and 2000 kr
-                int randomPrice = random.Next(700, 2001);
-
                 // Generate random duration text
                 DateTime randomDate = DateTime.Now.AddDays(random.Next(1, 30));
                 string duration = $"Book a returning flight from {randomDate:dd MMM}";
@@ -74,7 +88,7 @@ namespace clonemondo.Data
                     City = fare.City,
                     Country = fare.Country,
                     Duration = duration,
-                    PriceRange = randomPrice
+                    PriceRange = SetPrice(fare.Continent)
                 });
 
                 // Remove the used fare to avoid duplicates

@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using clonemondo.Models;
-using clonemondo.Data;
 using clonemondo.ViewModels;
+using clonemondo.Data;
 
 namespace clonemondo.Controllers;
 
@@ -41,7 +41,7 @@ public class HomeController : Controller
         // Log the count of airports for debugging
         Console.WriteLine($"Number of airports: {airports.Count}");
 
-        var model = new AirportViewModel
+        var model = new Models.AirportViewModel
         {
             Airports = airports
         };
