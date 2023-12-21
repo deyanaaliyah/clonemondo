@@ -9,6 +9,7 @@ namespace clonemondo.Data
     {
         private readonly Random random = new Random();
 
+        // Encapsulate the path of the CSV file
         private string GetFilePath()
         {
             string currentDirectory = Directory.GetCurrentDirectory();
@@ -21,12 +22,16 @@ namespace clonemondo.Data
             string filePath = GetFilePath();
             List<FeaturedFares> featuredFares = new List<FeaturedFares>();
 
+            // If the path is correct and the file exists
             if (File.Exists(filePath))
             {
+                // Seperate the file by lines and put them into a string
                 string[] lines = File.ReadAllLines(filePath);
 
+                // Loop through the lines
                 foreach (string line in lines)
                 {
+                    // And now, split each line by ";" and range+add them onto a new featured fare
                     string[] values = line.Split(';');
 
                     if (values.Length >= 4)
@@ -45,6 +50,7 @@ namespace clonemondo.Data
             return featuredFares;
         }
 
+        // Setting a random flight based on the continent
         public int SetPrice(string continent)
         {
             int randomPrice;

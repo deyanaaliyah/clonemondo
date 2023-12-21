@@ -38,9 +38,6 @@ public class HomeController : Controller
         var airportDataReader = new AirportDataReader();
         var airports = airportDataReader.ReadAirports();
 
-        // Log the count of airports for debugging
-        Console.WriteLine($"Number of airports: {airports.Count}");
-
         var model = new Models.AirportViewModel
         {
             Airports = airports

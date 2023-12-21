@@ -28,7 +28,7 @@ namespace clonemondo.Controllers
                 departureDate,
                 returnDate);
 
-            // Create an instance of SearchResultViewModel and populate the 'Flights' property
+            // Create an instance of SearchResultViewMode, and populate the 'Flights' property
             var viewModel = new SearchResultViewModel
             {
                 Flights = dummyFlights,
